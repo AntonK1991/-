@@ -1,0 +1,186 @@
+{
+	"info": {
+		"_postman_id": "23afdd6f-8ed7-4e8a-a010-2be8e0218ba6",
+		"name": "ArtSoft",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Task_2",
+			"item": [
+				{
+					"name": "users_list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://reqres.in/api/users?page=1",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eve_info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://reqres.in/api/users/4",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"users",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response_data = pm.response.json();\r",
+									"pm.environment.set (\"user_token\", response_data.token);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "{{login}}",
+									"type": "default"
+								},
+								{
+									"key": "password",
+									"value": "{{pass}}",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://reqres.in/api/login",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Eve",
+									"type": "default"
+								},
+								{
+									"key": "job",
+									"value": "QA",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://reqres.in/api/users",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
